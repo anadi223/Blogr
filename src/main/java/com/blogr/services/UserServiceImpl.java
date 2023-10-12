@@ -4,6 +4,7 @@ import com.blogr.entities.User;
 import com.blogr.exceptions.ResourceNotFoundException;
 import com.blogr.payloads.UserDTO;
 import com.blogr.repositories.UserRepo;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +14,11 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService{
 
     private UserRepo repo;
+    private ModelMapper modelMapper;
 
-    UserServiceImpl(UserRepo repo){
+    UserServiceImpl(UserRepo repo,ModelMapper modelMapper){
         this.repo = repo;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -66,24 +69,32 @@ public class UserServiceImpl implements UserService{
     }
 
 
-
+    //We will use modal mapper now for legacy way we do it manually from line number 93
     private User dtoToUser(UserDTO userDTO){
-        User user = new User();
-        user.setId(userDTO.getId());
-        user.setName(userDTO.getName());
-        user.setEmail(userDTO.getEmail());
-        user.setAbout(userDTO.getAbout());
-        user.setPassword(userDTO.getPassword());
-        return user;
+        return modelMapper.map(userDTO,User.class); //pass the object and the class to which you want to convert the method to
     }
 
     public UserDTO userToDto(User user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setAbout(user.getAbout());
-        userDTO.setPassword(user.getPassword());
-        return userDTO;
+        return modelMapper.map(user,UserDTO.class);
     }
+
+//    private User dtoToUser(UserDTO userDTO){
+//        User user = new User();
+//        user.setId(userDTO.getId());
+//        user.setName(userDTO.getName());
+//        user.setEmail(userDTO.getEmail());
+//        user.setAbout(userDTO.getAbout());
+//        user.setPassword(userDTO.getPassword());
+//        return user;
+//    }
+//
+//    public UserDTO userToDto(User user){
+//        UserDTO userDTO = new UserDTO();
+//        userDTO.setId(user.getId());
+//        userDTO.setName(user.getName());
+//        userDTO.setEmail(user.getEmail());
+//        userDTO.setAbout(user.getAbout());
+//        userDTO.setPassword(user.getPassword());
+//        return userDTO;
+//    }
 }
