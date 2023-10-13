@@ -3,6 +3,7 @@ package com.blogr.controllers;
 import com.blogr.payloads.ApiResponse;
 import com.blogr.payloads.UserDTO;
 import com.blogr.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class UserController {
     }
     //POST - create User
     @PostMapping("/create")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO){
     UserDTO createdUserDto = userService.createUser(userDTO);
     return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
     }
@@ -28,7 +29,7 @@ public class UserController {
 
     //PUT - update user
     @PutMapping("/update/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO,@PathVariable int userId){
+    public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO,@PathVariable int userId){
         UserDTO updatedUser = userService.updateUser(userDTO,userId);
         return new ResponseEntity<>(updatedUser,HttpStatus.ACCEPTED);
     }
