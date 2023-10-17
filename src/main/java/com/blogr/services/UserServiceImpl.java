@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private UserRepo repo;
-    private ModelMapper modelMapper;
+    private final UserRepo repo;
+    private final ModelMapper modelMapper;
 
     UserServiceImpl(UserRepo repo,ModelMapper modelMapper){
         this.repo = repo;

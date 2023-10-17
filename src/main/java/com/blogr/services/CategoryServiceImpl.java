@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public class CategoryServiceImpl implements CategoryService{
 
-    private CategoryRepo repo;
-    private ModelMapper modelMapper;
+    private final CategoryRepo repo;
+    private final ModelMapper modelMapper;
     CategoryServiceImpl(CategoryRepo repo,ModelMapper mapper){
         this.repo = repo;
         this.modelMapper = mapper;
