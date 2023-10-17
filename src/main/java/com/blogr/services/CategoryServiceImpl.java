@@ -5,10 +5,12 @@ import com.blogr.exceptions.ResourceNotFoundException;
 import com.blogr.payloads.CategoryDto;
 import com.blogr.repositories.CategoryRepo;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CategoryServiceImpl implements CategoryService{
 
     private final CategoryRepo repo;
@@ -33,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService{
             Category updatedCategory = repo.save(category);
             return CategoryToDto(updatedCategory);
         }else{
-            throw new ResourceNotFoundException("Category","Id not present",categoryId);
+            throw new ResourceNotFoundException("Category"," with Id not present",categoryId);
         }
     }
 
@@ -43,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService{
            Category category = optionalCategory.get();
            return CategoryToDto(category);
        }else{
-           throw new ResourceNotFoundException("Category","Id not present",categoryId);
+           throw new ResourceNotFoundException("Category"," with Id not present",categoryId);
        }
     }
 
@@ -53,7 +55,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     public void deleteCategory(int CategoryId) {
-        Category category = repo.findById(CategoryId).orElseThrow(() -> new ResourceNotFoundException("Category","Id not present",CategoryId));
+        Category category = repo.findById(CategoryId).orElseThrow(() -> new ResourceNotFoundException("Category"," with Id not present",CategoryId));
         repo.delete(category);
     }
 
