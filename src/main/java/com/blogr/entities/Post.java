@@ -5,24 +5,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "posts")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Category {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String title;
-    private String description;
+    private String content;
+    private String imageURL;
+    private Date postAdded;
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Post> posts = new ArrayList<>();
+    //Now relation
+
+    @ManyToOne
+    private Category category;
+
+    @ManyToOne
+    private User user;
 
 }
