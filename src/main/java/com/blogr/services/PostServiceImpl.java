@@ -46,19 +46,26 @@ public class PostServiceImpl implements PostService {
     }
 
     public PostDto updatePost(PostDto postDto, int postId) {
-        return null;
+        Post post = postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("Post","Post Id",postId));
+        post.setTitle(postDto.getTitle());
+        post.setContent(postDto.getContent());
+        post.setImageURL(post.getImageURL());
+        Post updatedPost = postRepo.save(post);
+        return postToDto(updatedPost);
     }
 
     public void deletePost(int postId) {
-
+        userRepo.deleteById(postId);
     }
 
     public List<PostDto> getAllPost() {
-        return null;
+        List<Post> posts = postRepo.findAll();
+        return posts.stream().map((post -> postToDto(post))).toList();
     }
 
     public PostDto getPostById(int postId) {
-        return null;
+        Post post = postRepo.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post","Post Id",postId));
+        return postToDto(post);
     }
 
     public List<PostDto> getPostByCategory(int categoryId) {
