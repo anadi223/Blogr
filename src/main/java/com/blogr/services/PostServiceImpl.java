@@ -62,14 +62,19 @@ public class PostServiceImpl implements PostService {
     }
 
     public List<PostDto> getPostByCategory(int categoryId) {
-        return null;
+        Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category","Category Id",categoryId));
+        List<Post> posts = postRepo.findByCategory(category);
+        return posts.stream().map((post -> postToDto(post))).toList();
     }
 
     public List<PostDto> getPostByUser(int userId) {
-        return null;
+        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User","user Id",userId));
+        List<Post> posts = postRepo.findByUser(user);
+        return posts.stream().map((post -> postToDto(post))).toList();
     }
 
     public List<PostDto> searchPost(String keyword) {
+
         return null;
     }
 
