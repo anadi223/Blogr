@@ -55,7 +55,8 @@ public class PostServiceImpl implements PostService {
     }
 
     public void deletePost(int postId) {
-        userRepo.deleteById(postId);
+        Post post = postRepo.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post","post Id",postId));
+        postRepo.delete(post);
     }
 
     public List<PostDto> getAllPost() {

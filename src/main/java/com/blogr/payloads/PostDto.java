@@ -13,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class PostDto {
+    private int id;
     @NotBlank
     private String title;
     @NotBlank

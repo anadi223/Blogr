@@ -35,4 +35,25 @@ public class PostController {
     public ResponseEntity<List<PostDto>> getPostsByCategory(@PathVariable int categoryId){
         return new ResponseEntity<>(postService.getPostByCategory(categoryId),HttpStatus.OK);
     }
+
+    @GetMapping("/getPostById/{postId}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable int postId){
+        return new ResponseEntity<>(postService.getPostById(postId),HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPosts")
+    public List<PostDto> getAllPosts(){
+        return postService.getAllPost();
+    }
+
+    @PutMapping("updatePost/{postId}")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto,@PathVariable int postId){
+        return new ResponseEntity<>(postService.updatePost(postDto,postId),HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/deletePost/{postId}")
+    public ResponseEntity<HttpStatus> deletePost(@PathVariable int postId){
+        postService.deletePost(postId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
