@@ -42,8 +42,8 @@ public class PostController {
     }
 
     @GetMapping("/getAllPosts")
-    public List<PostDto> getAllPosts(){
-        return postService.getAllPost();
+    public List<PostDto> getAllPosts(@RequestParam(value = "pageNumber",defaultValue = "1",required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
+        return postService.getAllPost(pageNumber, pageSize);
     }
 
     @PutMapping("updatePost/{postId}")

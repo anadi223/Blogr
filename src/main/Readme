@@ -1,0 +1,9 @@
+Implementing blog based application
+It has users
+A user can create n posts
+A post can have n number of categories
+Implemented model mapper by creating external bean during initialisation of spring boot class
+Implemented global exception handler
+Implemented data bean validation
+Implemented pagination (Pagination is used to limit the number of records to be displayed in a single page, rest records will be displayed as per the pagination configuration)
+Spring Boot has all the support needed for pagination and sorting, since we extend JpaRepository, and JpaRepo can already accept Pageable

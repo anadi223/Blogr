@@ -10,6 +10,9 @@ import com.blogr.repositories.PostRepo;
 import com.blogr.repositories.UserRepo;
 import com.blogr.services.PostService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -59,8 +62,12 @@ public class PostServiceImpl implements PostService {
         postRepo.delete(post);
     }
 
-    public List<PostDto> getAllPost() {
-        List<Post> posts = postRepo.findAll();
+    public List<PostDto> getAllPost(int pageNumber, int pageSize) {
+        //creating a pageable object to implement pagination
+        Pageable p = PageRequest.of(pageNumber,pageSize);
+
+        Page<Post> pagePosts = postRepo.findAll(p); //JpaRepository find all method takes a pageable object by default
+        List<Post> posts = pagePosts.getContent();
         return posts.stream().map((post -> postToDto(post))).toList();
     }
 
