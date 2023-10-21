@@ -2,6 +2,7 @@ package com.blogr.services;
 
 import com.blogr.entities.Post;
 import com.blogr.payloads.PostDto;
+import com.blogr.payloads.PostResponse;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface PostService {
 
     void deletePost(int postId);
 
-    List<PostDto> getAllPost(int pageNumber, int pageSize);
+    PostResponse getAllPost(int pageNumber, int pageSize);
 
     PostDto getPostById(int postId);
 

@@ -5,6 +5,7 @@ import com.blogr.entities.Post;
 import com.blogr.entities.User;
 import com.blogr.exceptions.ResourceNotFoundException;
 import com.blogr.payloads.PostDto;
+import com.blogr.payloads.PostResponse;
 import com.blogr.repositories.CategoryRepo;
 import com.blogr.repositories.PostRepo;
 import com.blogr.repositories.UserRepo;
@@ -62,13 +63,23 @@ public class PostServiceImpl implements PostService {
         postRepo.delete(post);
     }
 
-    public List<PostDto> getAllPost(int pageNumber, int pageSize) {
+    public PostResponse getAllPost(int pageNumber, int pageSize) {
         //creating a pageable object to implement pagination
         Pageable p = PageRequest.of(pageNumber,pageSize);
 
         Page<Post> pagePosts = postRepo.findAll(p); //JpaRepository find all method takes a pageable object by default
         List<Post> posts = pagePosts.getContent();
-        return posts.stream().map((post -> postToDto(post))).toList();
+        List<PostDto> postDtos = posts.stream().map((post -> postToDto(post))).toList();
+
+        //postResponse class to send custom info about pagination
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+        postResponse.setPageNumber(pagePosts.getNumber());
+        postResponse.setPageSize(pagePosts.getSize());
+        postResponse.setTotalElements(pagePosts.getTotalElements());
+        postResponse.setTotalPages(pagePosts.getTotalPages());
+        postResponse.setLastPage(pagePosts.isLast());
+        return postResponse;
     }
 
     public PostDto getPostById(int postId) {

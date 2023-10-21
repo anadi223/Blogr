@@ -2,6 +2,7 @@ package com.blogr.controllers;
 
 import com.blogr.entities.Post;
 import com.blogr.payloads.PostDto;
+import com.blogr.payloads.PostResponse;
 import com.blogr.repositories.PostRepo;
 import com.blogr.services.PostService;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class PostController {
     }
 
     @GetMapping("/getAllPosts")
-    public List<PostDto> getAllPosts(@RequestParam(value = "pageNumber",defaultValue = "1",required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
+    public PostResponse getAllPosts(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
         return postService.getAllPost(pageNumber, pageSize);
     }
 
