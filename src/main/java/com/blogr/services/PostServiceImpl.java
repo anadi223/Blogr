@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -63,9 +64,9 @@ public class PostServiceImpl implements PostService {
         postRepo.delete(post);
     }
 
-    public PostResponse getAllPost(int pageNumber, int pageSize) {
+    public PostResponse getAllPost(int pageNumber, int pageSize, String sortBy) {
         //creating a pageable object to implement pagination
-        Pageable p = PageRequest.of(pageNumber,pageSize);
+        Pageable p = PageRequest.of(pageNumber,pageSize, Sort.by(sortBy));
 
         Page<Post> pagePosts = postRepo.findAll(p); //JpaRepository find all method takes a pageable object by default
         List<Post> posts = pagePosts.getContent();

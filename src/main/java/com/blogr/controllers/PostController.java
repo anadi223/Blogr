@@ -43,8 +43,8 @@ public class PostController {
     }
 
     @GetMapping("/getAllPosts")
-    public PostResponse getAllPosts(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
-        return postService.getAllPost(pageNumber, pageSize);
+    public PostResponse getAllPosts(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize, @RequestParam(value = "sortBy",defaultValue = "id",required = false) String sortBy){
+        return postService.getAllPost(pageNumber, pageSize,sortBy);
     }
 
     @PutMapping("updatePost/{postId}")
