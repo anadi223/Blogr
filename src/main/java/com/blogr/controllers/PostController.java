@@ -1,5 +1,6 @@
 package com.blogr.controllers;
 
+import com.blogr.config.Constants;
 import com.blogr.entities.Post;
 import com.blogr.payloads.PostDto;
 import com.blogr.payloads.PostResponse;
@@ -43,7 +44,7 @@ public class PostController {
     }
 
     @GetMapping("/getAllPosts")
-    public PostResponse getAllPosts(@RequestParam(value = "pageNumber",defaultValue = "0",required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize, @RequestParam(value = "sortBy",defaultValue = "id",required = false) String sortBy){
+    public PostResponse getAllPosts(@RequestParam(value = "pageNumber",defaultValue = Constants.PAGE_NUMBER,required = false) int pageNumber, @RequestParam(value = "pageSize",defaultValue = Constants.PAGE_SIZE,required = false) int pageSize, @RequestParam(value = "sortBy",defaultValue = Constants.SORT_BY,required = false) String sortBy){
         return postService.getAllPost(pageNumber, pageSize,sortBy);
     }
 

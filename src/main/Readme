@@ -10,3 +10,4 @@ Spring Boot has all the support needed for pagination and sorting, since we exte
 Improvised Pagination response by creating a custom class to send response details as pageNumber, current page number, page size etc
 Implementing Sort By also, spring jpa provides support for sort by as well
 Implementing searching by title
+Implemented image upload and image serve API

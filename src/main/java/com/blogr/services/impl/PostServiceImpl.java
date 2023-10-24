@@ -1,4 +1,4 @@
-package com.blogr.services;
+package com.blogr.services.impl;
 
 import com.blogr.entities.Category;
 import com.blogr.entities.Post;

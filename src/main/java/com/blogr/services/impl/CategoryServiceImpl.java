@@ -1,9 +1,10 @@
-package com.blogr.services;
+package com.blogr.services.impl;
 
 import com.blogr.entities.Category;
 import com.blogr.exceptions.ResourceNotFoundException;
 import com.blogr.payloads.CategoryDto;
 import com.blogr.repositories.CategoryRepo;
+import com.blogr.services.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo repo;
     private final ModelMapper modelMapper;

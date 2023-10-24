@@ -1,9 +1,10 @@
-package com.blogr.services;
+package com.blogr.services.impl;
 
 import com.blogr.entities.User;
 import com.blogr.exceptions.ResourceNotFoundException;
 import com.blogr.payloads.UserDTO;
 import com.blogr.repositories.UserRepo;
+import com.blogr.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepo repo;
     private final ModelMapper modelMapper;
