@@ -57,4 +57,11 @@ public class PostController {
         postService.deletePost(postId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    //search by keyword
+    @GetMapping("/search/{keywords}")
+    public ResponseEntity<List<PostDto>> searchPostByTitle(@PathVariable String keywords){
+        return new ResponseEntity<>(postService.searchPost(keywords),HttpStatus.OK);
+    }
+
 }
