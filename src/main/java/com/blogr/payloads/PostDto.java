@@ -26,6 +26,5 @@ public class PostDto {
     private CategoryDto category; //if you add category instead of categoryDto and UserDto you will get stack overflow error
     //as you have declared a mapping in category and user class related to posts for creating a new list
     private UserDTO user;
-    private Set<Comments> comments = new HashSet<>();
 }
 
