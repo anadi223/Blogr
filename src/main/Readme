@@ -13,3 +13,4 @@ Implementing searching by title
 Implemented image upload and image serve API
 Implemented comments on a post
 Now going to implement securing Rest APIs with Spring Security
+Implementing Swagger Documentation
